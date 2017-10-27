@@ -3,7 +3,7 @@
 // by Nisan and Schocken, MIT Press.
 // File name: projects/01/Mux.hdl
 
-/** 
+/**
  * Multiplexor:
  * out = a if sel == 0
  *       b otherwise
@@ -14,5 +14,8 @@ CHIP Mux {
     OUT out;
 
     PARTS:
-    // Put your code here:
+    Not(in=sel, out=notS);
+    And(a=a, b=notS, out=AandnotS);
+    And(a=b, b=sel, out=BandS);
+    Or(a=AandnotS, b=BandS, out=out);
 }
